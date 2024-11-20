@@ -14,6 +14,7 @@ class TestHootel(object):
         options.add_argument('--headless')
         self.browser = webdriver.Chrome(options=options)
         self.browser.get(URL)
+        self.browser.maximize_window()
 
     def teardown_method(self):
         self.browser.quit()
@@ -23,6 +24,7 @@ class TestHootel(object):
     @allure.severity(allure.severity_level.TRIVIAL)
     @allure.tag("login")
     def test_login(self):
+        print(self.browser.get_window_size("current"))
         login_btn = self.browser.find_element(By.XPATH, '//a[@class="nav-link"]')
         login_btn.click()
 
